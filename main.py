@@ -1,7 +1,7 @@
 import numpy as np
 import random
 import tensorflow.keras as keras
-
+import matplotlib.pyplot as plt
 import data_processor
 from dataset_generator import OxfordPets
 from unet_model import UNet
@@ -48,26 +48,23 @@ def model_complie_train(train_data, val_data):
     unet_model.compile(optimizer='rmsprop', loss='sparse_categorical_crossentropy')
 
     # 模型训练
-    unet_model.fit(train_data, epochs=2, validation_data=val_data, steps_per_epoch=1, validation_steps=1)
+    unet_model.fit(train_data, epochs=1, validation_data=val_data)
 
     return unet_model
 
-def predict(unet_model, index, val_data, val_input_img_paths):
-    import matplotlib.pyplot as plt
-    from tensorflow.keras.preprocessing.image import load_img
-    
+def predict(unet_model, index, val_gen):
     # 获取预测结果
-    val_pred = unet_model.predict(val_data)
+    val_pred = unet_model.predict(val_gen)
     pred = val_pred[index]
     mask = np.argmax(pred, axis=-1)
     
     # 直接从验证集数据中获取对应的图像
     # 获取验证集的batch索引和图像索引
-    batch_idx = index // val_data.batch_size
-    img_idx = index % val_data.batch_size
+    batch_idx = index // val_gen.batch_size
+    img_idx = index % val_gen.batch_size
     
     # 获取对应的batch数据
-    val_batch = val_data[batch_idx]
+    val_batch = val_gen[batch_idx]
     original_img = val_batch[0][img_idx]  # 输入图像
     true_mask = val_batch[1][img_idx]     # 真实mask
     
@@ -130,5 +127,5 @@ if __name__ == '__main__':
     val_input_img_paths = input_img_path[-1000:]  # 验证集图像路径
     
     # 模型预测
-    predict(unet, 10, val_data, val_input_img_paths)
+    predict(unet, 10, val_data)
     
