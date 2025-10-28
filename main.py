@@ -48,7 +48,7 @@ def model_complie_train(train_data, val_data):
     unet_model.compile(optimizer='rmsprop', loss='sparse_categorical_crossentropy')
 
     # 模型训练
-    unet_model.fit(train_data, epochs=1, validation_data=val_data)
+    unet_model.fit(train_data, epochs=3, validation_data=val_data)
 
     return unet_model
 
@@ -127,5 +127,5 @@ if __name__ == '__main__':
     val_input_img_paths = input_img_path[-1000:]  # 验证集图像路径
     
     # 模型预测
-    predict(unet, 10, val_data)
+    predict(unet, 20, val_data)
     

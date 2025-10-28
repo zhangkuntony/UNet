@@ -103,16 +103,3 @@ class UNet:
         outputs = Activation('softmax')(x)
         
         return keras.Model(inputs=inputs, outputs=outputs)
-    
-    # def summary(self):
-    #     """显示模型摘要"""
-    #     return self.model.summary()
-    #
-    # def compile(self, optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy']):
-    #     """编译模型"""
-    #     self.model.compile(optimizer=optimizer, loss=loss, metrics=metrics)
-    #
-    # def get_model(self):
-    #     """获取Keras模型对象"""
-    #     return self.model
-
