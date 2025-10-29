@@ -44,9 +44,9 @@ def display_images_vs_predict(input_img, target_img, predict_img):
     plt.axis('off')
 
     # 显示预测图像
-    target_img = ImageOps.autocontrast(predict_img)
+    predict_img = ImageOps.autocontrast(predict_img)
     plt.subplot(1, 3, 3)
-    plt.imshow(target_img)
+    plt.imshow(predict_img)
     plt.title('Predict Image')
     plt.axis('off')
 

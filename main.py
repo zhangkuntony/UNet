@@ -81,5 +81,6 @@ if __name__ == '__main__':
 
     # 显示原图，目标图，和预测图
     index = 10
-    data_loader.display_images_vs_predict(val_input_img_paths[index], val_target_img_paths[index], predict_images[index])
+    predict_img = mask_predict_img(index, predict_images)
+    data_loader.display_images_vs_predict(val_input_img_paths[index], val_target_img_paths[index], predict_img)
     
