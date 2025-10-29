@@ -83,16 +83,16 @@ num_classes = 4           # 分类数量
 - 显示图像和标注的对比效果
 
 ```python
-from data_processor import DataProcessor
+from data_loader import DataLoader
 
 # 创建数据处理器
-processor = DataProcessor()
+processor = DataLoader()
 
 # 加载数据
 input_paths, target_paths = processor.load_data()
 
 # 显示图像
-processor.display_image(0)
+display_image(0)
 ```
 
 ### dataset_generator.py
